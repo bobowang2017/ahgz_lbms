@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.staticfiles',
     'test_app',
+    'previlige_app',
     'common_app',
 ]
 
