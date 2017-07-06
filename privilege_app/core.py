@@ -10,4 +10,4 @@ def get_permission_by_role(role_id):
         [role_id]
     )
     result = cursor.fetchall()
-    return result
+    return list(result)
