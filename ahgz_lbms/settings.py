@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'test_app',
     'privilege_app',
     'common_app',
+    'user_app',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ahgz_lbms',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
