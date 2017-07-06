@@ -30,7 +30,7 @@ class User(models.Model):
     class Meta:
         verbose_name = u'用户表'
         verbose_name_plural = verbose_name
-        db_table = 'user'
+        db_table = 'test_user'
 
     def __unicode__(self):
         return self
