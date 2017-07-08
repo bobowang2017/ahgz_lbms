@@ -120,12 +120,12 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'standard': {
-            'format': "%(asctime)s:%(pathname)s:%(lineno)s: %(message)s",
+            'format': "%(asctime)s:  %(lineno)s:  %(message)s",
             'datefmt': "%d/%b/%Y %H:%M:%S"
         },
     },
     'handlers': {
-        'logfile': {
+        'file_handler': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'filename': os.path.abspath('log_file/log.log'),
@@ -133,12 +133,23 @@ LOGGING = {
             'interval': 1,
             'formatter': 'standard',
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
     },
     'loggers': {
-        'collection': {
-            'handlers': ['logfile'],
+         'django': {
+            'handlers': ['console', 'file_handler'],
             'level': 'DEBUG',
-        },
+            'propagate': True
+         },
+         'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+         }
     }
 }
 
