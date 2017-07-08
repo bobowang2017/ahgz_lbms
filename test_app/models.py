@@ -15,7 +15,7 @@ class User(models.Model):
         (-2, u'过期'),
     )
     user_id = models.CharField(max_length=64, verbose_name=u'序号', primary_key=True)
-    user_number = models.CharField(max_length=10, verbose_name=u'编号', unique=True)
+    user_number = models.CharField(max_length=10, verbose_name=u'编号', unique=True, db_index=True)
     user_name = models.CharField(max_length=64, verbose_name=u'姓名')
     user_sex = models.BooleanField(default=True, verbose_name=u'性别')
     user_birthday = models.DateTimeField(verbose_name=u'出生日期')

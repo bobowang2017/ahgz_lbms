@@ -20,7 +20,7 @@ class View(models.Model):
 
 
 class Role(models.Model):
-    role_id = models.IntegerField(max_length=5, verbose_name=u'角色编号', primary_key=True)
+    role_id = models.IntegerField(verbose_name=u'角色编号', primary_key=True)
     role_name = models.CharField(max_length=32, verbose_name=u'角色名称')
     extra = models.CharField(max_length=128, verbose_name=u'备注信息', null=True)
 

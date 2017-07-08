@@ -7,7 +7,7 @@ class Log(models.Model):
 
     id = models.AutoField(verbose_name=u'序号', primary_key=True)
     operate_user_id = models.CharField(max_length=64, verbose_name=u'操作人编号')
-    operate_user_name = models.CharField(max_length=64, verbose_name=u'操作人姓名')
+    operate_user_name = models.CharField(max_length=64, verbose_name=u'操作人姓名', db_index=True)
     operate_time = models.DateTimeField(auto_now=True, verbose_name='操作时间', null=True)
     operate_action = models.CharField(max_length=128, verbose_name='操作行为')
     operate_ip = models.CharField(max_length=32, verbose_name='操作人IP地址')
