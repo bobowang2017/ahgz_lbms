@@ -2,7 +2,11 @@
 
 
 # 去掉函数中参数值是None的参数
+import functools
+
+
 def filter_none_param(func):
+    @functools.wraps(func)
     def _wrapper(*args, **kwargs):
         params = dict()
         for key in kwargs:
