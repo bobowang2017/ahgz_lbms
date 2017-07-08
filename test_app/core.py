@@ -3,8 +3,8 @@ import traceback
 import urllib
 
 from common_app.decorator import filter_none_param
-from serializer import UserSerializer
-from models import User
+from serializer import TestUserSerializer
+from models import TestUser
 import json
 from django.db import transaction
 import urllib2
@@ -12,7 +12,7 @@ import urllib2
 
 @filter_none_param
 def create_user(**kwargs):
-    serializer = UserSerializer(data=kwargs)
+    serializer = TestUserSerializer(data=kwargs)
     if serializer.is_valid(raise_exception=True):
         serializer.save(**kwargs)
 
@@ -21,7 +21,7 @@ def create_user(**kwargs):
 def get_user(page_num, page_size, **kwargs):
     start = (page_num - 1) * page_size
     end = start + page_size
-    result = User.objects
+    result = TestUser.objects
     if kwargs.get('user_number'):
         user_number = kwargs.get('user_number')
         kwargs.pop('user_number')
@@ -35,11 +35,11 @@ def get_user(page_num, page_size, **kwargs):
         kwargs.pop('user_phone')
         result = result.filter(user_phone__contains=user_phone)
     result = result.filter(**kwargs).order_by('user_number')[start: end]
-    return UserSerializer(result, many=True).data
+    return TestUserSerializer(result, many=True).data
 
 
 def check_password(user_id, user_password):
-    user = User.objects.filter(user_id=user_id)
+    user = TestUser.objects.filter(user_id=user_id)
     if user.user_password == user_password:
         return True
     return False
@@ -47,7 +47,7 @@ def check_password(user_id, user_password):
 
 @filter_none_param
 def get_user_total(**kwargs):
-    result = User.objects
+    result = TestUser.objects
     if kwargs.get('user_number'):
         user_number = kwargs.get('user_number')
         kwargs.pop('user_number')
@@ -61,17 +61,17 @@ def get_user_total(**kwargs):
         kwargs.pop('user_phone')
         result = result.filter(user_phone__contains=user_phone)
     result = result.filter(**kwargs)
-    return len(UserSerializer(result, many=True).data)
+    return len(TestUserSerializer(result, many=True).data)
 
 
 @transaction.atomic
 def delete_users_by_ids(id_list):
-    User.objects.filter(user_id__in=id_list).delete()
+    TestUser.objects.filter(user_id__in=id_list).delete()
 
 
 @filter_none_param
 def update_user_by_id(user_id, **kwargs):
-    User.objects.filter(user_id=user_id).update(**kwargs)
+    TestUser.objects.filter(user_id=user_id).update(**kwargs)
 
 
 def get_tree_view(**kwargs):

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
-from test_app.models import User
+from test_app.models import TestUser
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
 
 
-class UserSerializer(serializers.ModelSerializer):
+class TestUserSerializer(serializers.ModelSerializer):
     role_type = (
         (0, 'customer'),
         (1, 'manager'),
@@ -32,11 +32,11 @@ class UserSerializer(serializers.ModelSerializer):
     user_status = serializers.ChoiceField(choices=user_status, default=0)
 
     class Meta:
-        model = User
+        model = TestUser
         fields = serializers.ALL_FIELDS
 
     def create(self, validated_data):
-        return User.objects.create(**validated_data)
+        return TestUser.objects.create(**validated_data)
 
     def update(self, user, validated_data):
         user.user_id = validated_data.get('user_id', user.user_id)
