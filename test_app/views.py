@@ -9,7 +9,7 @@ from core import create_user, get_user, get_tree_view, get_user_total, delete_us
 import uuid, logging, random
 
 
-class UserView(APIView):
+class TestUserView(APIView):
 
     def get(self, request):
         query_params = request.query_params

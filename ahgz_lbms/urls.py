@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^v1/', include('test_app.urls')),
     url(r'^v1/', include('privilege_app.urls')),
     url(r'^v1/', include('log_app.urls')),
+    url(r'^v1/', include('user_app.urls')),
 ]
