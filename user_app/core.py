@@ -7,7 +7,7 @@ from user_app.serializer import UserSerializer
 
 @filter_none_param
 def create_user(**kwargs):
-    serializer = UserSerializer(date=kwargs)
+    serializer = UserSerializer(data=kwargs)
     if serializer.is_valid(raise_exception=True):
         serializer.save(**kwargs)
 
