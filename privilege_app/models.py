@@ -8,6 +8,7 @@ class View(models.Model):
     parent_view_id = models.IntegerField(verbose_name=u'父级编号')
     view_url = models.CharField(max_length=128, verbose_name=u'URL导航地址')
     view_name = models.CharField(max_length=32, verbose_name=u'URL导航名称')
+    view_option = models.CharField(max_length=256, verbose_name=u'视图对应的操作', null=True)
     extra = models.CharField(max_length=128, verbose_name=u'备注信息', null=True)
 
     class Meta:
@@ -37,6 +38,7 @@ class RoleMappingView(models.Model):
     id = models.AutoField(verbose_name=u'序列号', primary_key=True)
     role_id = models.IntegerField(verbose_name=u'角色编号')
     view_id = models.CharField(max_length=32, verbose_name=u'视图编号')
+    view_option = models.CharField(max_length=256, verbose_name=u'视图对应的操作', null=True)
 
     class Meta:
         verbose_name = u'角色视图关系表'

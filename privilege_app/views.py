@@ -42,6 +42,7 @@ class PrivilegeView(APIView):
         opt_result = dict()
         opt_result["url"] = opt_obj[3]
         opt_result["url_name"] = opt_obj[2]
+        opt_result["option"] = opt_obj[5]
         if children:
             opt_result["children"] = children
         return opt_result
