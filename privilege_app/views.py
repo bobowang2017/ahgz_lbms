@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from core import get_permission_by_role
+from core import get_permission_by_role, get_all_permission
 from common_app.process import response_data
 
 
@@ -16,10 +16,11 @@ class PrivilegeView(APIView):
         :return:
         """
         role_id = request.query_params.get('role_id', None)
-        if role_id is None:
-            return Response(response_data(0, 'ParamError', 'Param role_id is None'), status=status.HTTP_200_OK)
         try:
-            result = get_permission_by_role(role_id)
+            if role_id:
+                result = get_permission_by_role(role_id)
+            else:
+                result = get_all_permission()
         except Exception as e:
             return Response(response_data(0, 'Exception', e), status=status.HTTP_200_OK)
         result_wrapper = self.wrapper_result_json(result, result[0])

@@ -11,3 +11,12 @@ def get_permission_by_role(role_id):
     )
     result = cursor.fetchall()
     return list(result)
+
+
+def get_all_permission():
+    cursor = connection.cursor()
+    cursor.execute(
+        "select view_id, parent_view_id, view_name, view_url, extra from view"
+    )
+    result = cursor.fetchall()
+    return list(result)
