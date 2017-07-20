@@ -2,6 +2,7 @@
 import StringIO
 import xlwt
 from django.http import HttpResponse
+import xlrd
 
 
 def get_excel_response(name, titles, rows, column_widths=None, **style):
@@ -74,3 +75,33 @@ def get_excel_response(name, titles, rows, column_widths=None, **style):
     output.seek(0)
     response.write(output.getvalue())
     return response
+
+"""
+    python读取excel中单元格的内容返回的有5种类型，即ctype:
+    0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
+"""
+
+
+def read_excel(file_path):
+    data = xlrd.open_workbook(file_path, formatting_info=True)
+    # 获取一个工作表
+    table = data.sheets()[0]      # 通过索引顺序获取
+    # table = data.sheet_by_index(0)          #通过索引顺序获取
+    # table = data.sheet_by_name(u'Sheet1')   #通过名称获取
+    nrows = table.nrows
+    ncols = table.ncols
+    for i in range(nrows):
+        for j in range(ncols):
+            ctype = table.cell(i, j).ctype
+            print ctype,
+            if ctype == 1:
+                print table.cell(i, j).value.encode('utf-8'),
+            if ctype == 2:
+                print table.cell(i, j).value,
+            if ctype == 0:
+                print 'empty',
+            if ctype == 6:
+                print 'blank',
+        print("\n")
+if __name__ == "__main__":
+    read_excel('D://test.xls')
