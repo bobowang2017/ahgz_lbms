@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'common_app',
     'user_app',
     'log_app',
+    'extend_script',
 ]
 
 MIDDLEWARE = [
