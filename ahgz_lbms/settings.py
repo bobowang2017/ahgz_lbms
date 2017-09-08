@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'common_app',
     'user_app',
     'log_app',
-    'test_xworkflow_app',
 ]
 
 MIDDLEWARE = [
