@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'common_app',
     'user_app',
     'log_app',
+    'test_xworkflow_app',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ahgz_lbms',
         'USER': 'root',
-        'PASSWORD': '123',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
